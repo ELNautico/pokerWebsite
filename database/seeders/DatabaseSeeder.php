@@ -3,8 +3,10 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Game;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Carbon;
 use Spatie\Permission\Models\Role;
 
 class DatabaseSeeder extends Seeder
@@ -93,5 +95,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'benni.email@gmail.com',
             'hasrole' => 'user',
         ])->assignRole('user');
+
+        Game::factory()->create();
     }
 }
