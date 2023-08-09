@@ -115,32 +115,20 @@
                 $userForSeat = $registeredUsers[$i] ?? null;
             @endphp
             @if ($userForSeat)
-                <div class="flex justify-center">
-                    <div class="seat-user"
-                         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; background-color: gray; width: 100px; height: 100px; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                <div class="flex flex-col items-center">
+                    <div class="seat-user relative"
+                         style="width: 100px; height: 100px; border-radius: 50%; overflow: hidden;">
                         @if ($userForSeat->profile_picture)
                             <img src="{{ asset('storage/' . $userForSeat->profile_picture) }}"
                                  alt="{{ $userForSeat->name }} Profile Picture" class="rounded-full w-full h-full">
                         @else
-                            <p class="seat-username text-white font-bold"
-                               style="margin: 0;">{{ strtoupper(substr($userForSeat->name, 0, 1)) }}</p>
-                        @endif
-                        @if (Auth::user()->hasRole('admin') && $userForSeat->id !== $loggedInUserId)
-                            <form action="{{ route('game.kick', ['id' => $userForSeat->id]) }}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                        class="absolute top-0 right-0 text-white bg-red-500 hover:text-red-500 hover:bg-gray-100 focus:outline-none rounded-full">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                         stroke="currentColor" class="h-5 w-5">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M6 18L18 6M6 6l12 12"></path>
-                                    </svg>
-                                </button>
-                            </form>
+                            <div class="bg-gray-500 w-full h-full flex justify-center items-center">
+                                <p class="seat-username text-white font-bold"
+                                   style="margin: 0;">{{ strtoupper(substr($userForSeat->name, 0, 1)) }}</p>
+                            </div>
                         @endif
                     </div>
-                    <p class="text-white font-bold uppercase text-lg mt-5">{{ $userForSeat->name }}SSSS</p>
+                    <p class="text-white font-bold uppercase text-lg mt-3">{{ $userForSeat->name }}</p>
                 </div>
             @else
                 <img src="{{ asset('images/sitz.png') }}" alt="Image" style="width: 100%; height: 100%;">
