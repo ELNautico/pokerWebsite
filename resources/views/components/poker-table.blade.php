@@ -43,11 +43,20 @@
                 $userForSeat = $registeredUsers[$i] ?? null;
             @endphp
             @if ($userForSeat)
-                <h2 class="seat-text text-white font-bold" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
-                    {{ $userForSeat->name }}
-                </h2>
+                <div class="flex justify-center">
+                    <div class="seat-user" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; background-color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 12px;">
+                        @if ($userForSeat->profile_picture)
+                            <img src="{{ asset('storage/' . $userForSeat->profile_picture) }}" alt="{{ $userForSeat->name }} Profile Picture" class="rounded-full w-full h-full">
+                        @else
+                            <p class="seat-username text-black font-bold" style="margin: 0;">{{ strtoupper(substr($userForSeat->name, 0, 1)) }}</p>
+                        @endif
+                    </div>
+                    <p class="text-white font-bold uppercase text-lg">{{ $userForSeat->name }}</p>
+                </div>
             @else
-                <h2 class="seat-text text-red-500 font-bold uppercase" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;">Empty</h2>
+                <div class="seat-empty" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1;">
+                    <h2 class="seat-text text-red-500 font-bold uppercase" style="margin: 0;">Empty</h2>
+                </div>
             @endif
         </div>
         @php

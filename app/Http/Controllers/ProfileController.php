@@ -57,4 +57,16 @@ class ProfileController extends Controller
 
         return Redirect::to('/');
     }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'profile_picture' => 'required|image',
+        ]);
+
+        $profilePicturePath = $request->file('profile_picture')?->store('profile_pictures', 'public');
+        auth()->user()?->update(['profile_picture' => $profilePicturePath]);
+
+        return back()->with('success', 'Profile image updated successfully.');
+    }
 }
