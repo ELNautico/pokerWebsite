@@ -24,6 +24,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['au
 Route::post('/add-to-game', [GameController::class, 'addToGame'])->middleware(['auth', 'verified'])->name('game.add');
 Route::post('/leave-the-game', [GameController::class, 'leaveGame'])->middleware(['auth', 'verified'])->name('game.leave');
 Route::post('/reset-the-game', [GameController::class, 'resetGame'])->middleware(['auth', 'verified'])->name('game.reset');
+Route::delete('/game-kick/{id}', [GameController::class, 'kickUser'])->middleware(['auth', 'verified'])->name('game.kick');
 
 
 Route::middleware('auth')->group(function () {

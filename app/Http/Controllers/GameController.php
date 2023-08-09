@@ -39,6 +39,12 @@ class GameController extends Controller
         return redirect()->back()->with('success', 'You have left the game.');
     }
 
+    public function kickUser($id){
+        Game::where('user_id', $id)->delete();
+
+        return redirect()->back();
+    }
+
     public function resetGame()
     {
         Game::truncate();

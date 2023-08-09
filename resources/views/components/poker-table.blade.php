@@ -44,12 +44,23 @@
             @endphp
             @if ($userForSeat)
                 <div class="flex justify-center">
-                    <div class="seat-user" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; background-color: white; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 12px;">
+                    <div class="seat-user" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 1; background-color: gray; width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 12px;">
                         @if ($userForSeat->profile_picture)
                             <img src="{{ asset('storage/' . $userForSeat->profile_picture) }}" alt="{{ $userForSeat->name }} Profile Picture" class="rounded-full w-full h-full">
                         @else
-                            <p class="seat-username text-black font-bold" style="margin: 0;">{{ strtoupper(substr($userForSeat->name, 0, 1)) }}</p>
+                            <p class="seat-username text-white font-bold" style="margin: 0;">{{ strtoupper(substr($userForSeat->name, 0, 1)) }}</p>
                         @endif
+                            @if (Auth::user()->hasRole('admin') && $userForSeat->id !== $loggedInUserId)
+                                <form action="{{ route('game.kick', ['id' => $userForSeat->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="absolute top-0 right-0 text-white bg-red-500 hover:text-red-500 hover:bg-gray-100 focus:outline-none rounded-full">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="h-5 w-5">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                                        </svg>
+                                    </button>
+                                </form>
+                            @endif
                     </div>
                     <p class="text-white font-bold uppercase text-lg">{{ $userForSeat->name }}</p>
                 </div>
