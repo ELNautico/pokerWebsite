@@ -16,22 +16,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Create all Roles
         $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
 
+        // Create all Users
         User::factory()->create([
             'name' => 'Paul',
             'password' => bcrypt('password'),
             'email' => 'paul.hager888@gmail.com',
             'hasrole' => 'admin',
         ])->assignRole('admin');
-
-        User::factory()->create([
-            'name' => 'Peter',
-            'password' => bcrypt('password'),
-            'email' => 'peter.email@gmail.com',
-            'hasrole' => 'user',
-        ])->assignRole('user');
 
         User::factory()->create([
             'name' => 'Alex',
@@ -41,9 +36,23 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('user');
 
         User::factory()->create([
-            'name' => 'Rafi',
+            'name' => 'Andi',
             'password' => bcrypt('password'),
-            'email' => 'rafi.email@gmail.com',
+            'email' => 'andi.email@gmail.com',
+            'hasrole' => 'user',
+        ])->assignRole('user');
+
+        User::factory()->create([
+            'name' => 'Bace',
+            'password' => bcrypt('password'),
+            'email' => 'bace.email@gmail.com',
+            'hasrole' => 'user',
+        ])->assignRole('user');
+
+        User::factory()->create([
+            'name' => 'Benni',
+            'password' => bcrypt('password'),
+            'email' => 'benni.email@gmail.com',
             'hasrole' => 'user',
         ])->assignRole('user');
 
@@ -76,26 +85,34 @@ class DatabaseSeeder extends Seeder
         ])->assignRole('user');
 
         User::factory()->create([
-            'name' => 'Raphi',
+            'name' => 'PauFreu',
+            'password' => bcrypt('password'),
+            'email' => 'paufreu.email@gmail.com',
+            'hasrole' => 'user',
+        ])->assignRole('user');
+
+        User::factory()->create([
+            'name' => 'Peter',
+            'password' => bcrypt('password'),
+            'email' => 'peter.email@gmail.com',
+            'hasrole' => 'user',
+        ])->assignRole('user');
+
+        User::factory()->create([
+            'name' => 'RafiPan',
             'password' => bcrypt('password'),
             'email' => 'raphi.email@gmail.com',
             'hasrole' => 'user',
         ])->assignRole('user');
 
         User::factory()->create([
-            'name' => 'Andi',
+            'name' => 'RafiVon',
             'password' => bcrypt('password'),
-            'email' => 'andi.email@gmail.com',
+            'email' => 'rafi.email@gmail.com',
             'hasrole' => 'user',
         ])->assignRole('user');
 
-        User::factory()->create([
-            'name' => 'Benni',
-            'password' => bcrypt('password'),
-            'email' => 'benni.email@gmail.com',
-            'hasrole' => 'user',
-        ])->assignRole('user');
-
+        // Create One Game
         Game::factory()->create();
     }
 }

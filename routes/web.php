@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,8 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard-user', [UserDashboardController::class, 'index'])->middleware(['auth', 'verified'])->name('user.dashboard');
+Route::post('/money-history', [UserDashboardController::class, 'store'])->name('money_history.store');
 Route::post('/add-to-game', [GameController::class, 'addToGame'])->middleware(['auth', 'verified'])->name('game.add');
 Route::post('/update-game', [GameController::class, 'updateGame'])->middleware(['auth', 'verified'])->name('game.update');
 Route::post('/leave-the-game', [GameController::class, 'leaveGame'])->middleware(['auth', 'verified'])->name('game.leave');
