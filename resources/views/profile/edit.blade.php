@@ -7,40 +7,6 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            @if(Auth::user()->hasRole('admin'))
-                <div class="p-4 sm:p-8 bg-slate-600 shadow sm:rounded-lg">
-                    <div class="max-w-xl">
-                        <h2 class="text-lg font-medium text-white pb-1">
-                            {{ __('Update Game Specs') }}
-                        </h2>
-
-                        <p class="mt-1 text-sm text-white pb-7">
-                            {{ __('Bitte gib die Daten für das nächste Game an.') }}
-                        </p>
-
-                        <form method="POST" action="{{ route('game.update') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="flex justify-start">
-                                <div class="mb-5 mr-10">
-                                    <x-input-label for="start_date" :value="__('Start Datum')" class="mb-2"></x-input-label>
-                                    <input type="date" name="start_date" id="start_date" class="bg-slate-500 text-white">
-                                </div>
-                                <div class="mr-10">
-                                    <x-input-label for="time" :value="__('Time')" class="mb-2"></x-input-label>
-                                    <x-text-input id="time" name="time" type="text" class="mt-1 block py-2.5"></x-text-input>
-                                </div>
-                                <div>
-                                    <x-input-label for="buy_in" :value="__('Buy-In')" class="mb-2"></x-input-label>
-                                    <x-text-input id="buy_in" name="buy_in" type="number" class="mt-1 block"></x-text-input>
-                                </div>
-                            </div>
-
-                            <x-primary-button>{{ __('Save') }}</x-primary-button>
-                        </form>
-                    </div>
-                </div>
-            @endif
-
             <div class="p-4 sm:p-8 bg-slate-600 shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.update-profile-information-form')
