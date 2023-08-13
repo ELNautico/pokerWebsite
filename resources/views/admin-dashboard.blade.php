@@ -40,7 +40,9 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-4 sm:p-8 bg-slate-600 shadow sm:rounded-lg">
-                    <h1 class="text-white font-bold mb-4">Erstelle einen User</h1>
+                    <h2 class="text-lg font-medium text-white pb-1">
+                        {{ __('Erstelle einen User') }}
+                    </h2>
                     <form action="{{ route('admin.create.user') }}" method="POST">
                         @csrf
                         <div class="mb-4">
