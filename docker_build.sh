@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build --tag pokerwebsite .
+docker build --no-cache --progress=plain --tag pokerwebsite .
