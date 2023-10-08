@@ -20,6 +20,8 @@ services:
       POSTGRES_DB: pokerWebsite
       POSTGRES_USER: pWUser
       POSTGRES_PASSWORD: yourdbpassword
+    networks:
+      - proxy
     volumes:
       - postgres_data:/var/lib/postgresql/data
 networks:
